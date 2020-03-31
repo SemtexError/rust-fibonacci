@@ -2,11 +2,8 @@ use std::num::Wrapping;
 
 use rand::prelude::*;
 
-fn calc (index: i32)
+fn calc (index: i32, random: f64)
 {
-    let mut rng = rand::thread_rng();
-    let random: f64 = rng.gen();
-
     // Wrapping because Java will do the same when it overflows
     let mut x = Wrapping(0i64);
     let mut y = Wrapping(1i64);
@@ -22,13 +19,16 @@ fn calc (index: i32)
         y = z;
     }
 
-    println!("{}, {}", index, max);
+    println!("{}, {}, {}, {}", index, max, x, y);
 }
 
 fn main()
 {
+    let mut rng = rand::thread_rng();
+    let random: f64 = rng.gen();
+
     for i in 0..1000
     {
-        calc(i);
+        calc(i, random);
     }
 }
